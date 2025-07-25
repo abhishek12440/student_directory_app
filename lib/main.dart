@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:student_directory_app/firebase_options.dart';
-import 'package:student_directory_app/home.dart';
+import 'package:student_directory_app/splash.dart';
 
 void main() async{
 await Firebase.initializeApp(
@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp(debugShowCheckedModeBanner: false,
     
-      home: Home()
+      home: Splash()
     );
   }
 }
