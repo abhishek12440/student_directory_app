@@ -55,9 +55,14 @@ Future<void> updatestudent(
       "Email": email,
       "Department": department,
     });
-  } catch (e) {
+    Navigator.pop(context);
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text("Student data updated")));
+  }
+   catch (e) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(e.toString())));
   }
 }

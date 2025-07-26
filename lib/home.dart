@@ -119,70 +119,80 @@ class _HomeState extends State<Home> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                      onPressed: () {namecount.text=studentdata[index]["Name"];emailcount.text=studentdata[index]["Email"];phonecount.text=studentdata[index]["phone Number"];departmentcount.text=studentdata[index]["Department"];
+                      onPressed: () {
+                        namecount.text = studentdata[index]["Name"];
+                        emailcount.text = studentdata[index]["Email"];
+                        phonecount.text = studentdata[index]["phone Number"];
+                        departmentcount.text = studentdata[index]["Department"];
                         showModalBottomSheet(
                           context: context,
                           builder: (context) {
                             return Column(
                               children: [
-                                 TextFormField(
-                      controller: namecount,
-                      decoration: InputDecoration(
-                        label: SizedBox(child: Text("Name")),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    TextFormField(
-                      controller: emailcount,
-                      decoration: InputDecoration(
-                        label: Text("Email"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    TextFormField(
-                      controller: phonecount,
-                      decoration: InputDecoration(
-                        label: Text("phone Number"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    TextFormField(
-                      controller: departmentcount,
-                      decoration: InputDecoration(
-                        label: Text("Department"),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        updatestudent(studentdata[index].id,
-                           namecount.text,
-                           emailcount.text,
-                           phonecount.text,
-                           departmentcount.text,
-                           context,
-                        );
-                      },
-                      child: Text(
-                        "update",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(66, 7, 7, 7),
-                      ),
-                    ),
+                                TextFormField(
+                                  controller: namecount,
+                                  decoration: InputDecoration(
+                                    label: SizedBox(child: Text("Name")),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                TextFormField(
+                                  controller: emailcount,
+                                  decoration: InputDecoration(
+                                    label: Text("Email",style: TextStyle(fontWeight: FontWeight.bold),),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                TextFormField(
+                                  controller: phonecount,
+                                  decoration: InputDecoration(
+                                    label: Text("phone Number"),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                TextFormField(
+                                  controller: departmentcount,
+                                  decoration: InputDecoration(
+                                    label: Text("Department"),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 20),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    updatestudent(
+                                      studentdata[index].id,
+                                      namecount.text,
+                                      emailcount.text,
+                                      phonecount.text,
+                                      departmentcount.text,
+                                      context,
+                                    );
+                                  },
+                                  child: Text(
+                                    "update",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color.fromARGB(
+                                      66,
+                                      7,
+                                      7,
+                                      7,
+                                    ),
+                                  ),
+                                ),
                               ],
                             );
                           },
