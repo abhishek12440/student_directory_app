@@ -24,6 +24,10 @@ class _HomeState extends State<Home> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          namecount.clear();
+          emailcount.clear();
+          phonecount.clear();
+          departmentcount.clear();
           showDialog(
             context: context,
             builder: (context) {
@@ -55,7 +59,7 @@ class _HomeState extends State<Home> {
                     TextFormField(
                       controller: phonecount,
                       decoration: InputDecoration(
-                        label: Text("Phone Number"),
+                        label: Text("phone Number"),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -111,16 +115,96 @@ class _HomeState extends State<Home> {
             itemCount: studentdata.length,
             itemBuilder: (context, index) {
               return ListTile(
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {namecount.text=studentdata[index]["Name"];emailcount.text=studentdata[index]["Email"];phonecount.text=studentdata[index]["phone Number"];departmentcount.text=studentdata[index]["Department"];
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Column(
+                              children: [
+                                 TextFormField(
+                      controller: namecount,
+                      decoration: InputDecoration(
+                        label: SizedBox(child: Text("Name")),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    TextFormField(
+                      controller: emailcount,
+                      decoration: InputDecoration(
+                        label: Text("Email"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    TextFormField(
+                      controller: phonecount,
+                      decoration: InputDecoration(
+                        label: Text("phone Number"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    TextFormField(
+                      controller: departmentcount,
+                      decoration: InputDecoration(
+                        label: Text("Department"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        updatestudent(studentdata[index].id,
+                           namecount.text,
+                           emailcount.text,
+                           phonecount.text,
+                           departmentcount.text,
+                           context,
+                        );
+                      },
+                      child: Text(
+                        "update",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(66, 7, 7, 7),
+                      ),
+                    ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      icon: Icon(Icons.edit),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        deletestudent(studentdata[index].id, context);
+                      },
+                      icon: Icon(Icons.delete),
+                    ),
+                  ],
+                ),
                 title: Text(studentdata[index]['Name']),
                 subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text(studentdata[index]['email']),
-                        
-                      ],
-                    ),
-                   
+                    Text(studentdata[index]['Email']),
+                    Text(studentdata[index]['phone Number']),
+                    Text(studentdata[index]['Department']),
                   ],
                 ),
               );

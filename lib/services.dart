@@ -11,7 +11,7 @@ Future<void> student({
   try {
     await FirebaseFirestore.instance.collection("datas").add({
       "Name": Name,
-      "Phone Number": phone_number,
+      "phone Number": phone_number,
       "Email": email,
       "Department": department,
     });
@@ -29,4 +29,35 @@ Future<void> student({
 Stream<QuerySnapshot> fetch_data() {
   return FirebaseFirestore.instance.collection("datas").snapshots();
 }
- 
+
+Future<void> deletestudent(String id, BuildContext context) async {
+  try {
+    await FirebaseFirestore.instance.collection("datas").doc(id).delete();
+  } catch (e) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Student data deleted")));
+  }
+}
+
+Future<void> updatestudent(
+  String id,
+  String Name,
+  String phone_number,
+  String email,
+  String department,
+  BuildContext context,
+) async {
+  try {
+    await FirebaseFirestore.instance.collection("datas").doc(id).update({
+      "Name": Name,
+      "phone Number": phone_number,
+      "Email": email,
+      "Department": department,
+    });
+  } catch (e) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Student data updated")));
+  }
+}
